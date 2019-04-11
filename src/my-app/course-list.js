@@ -75,7 +75,7 @@ enrollCourse(event){
       <iron-ajax 
       auto 
       id="ajaxCourses"
-      url="http://localhost:3000/course/rest/getAllCourse"
+     
       handle-as="json"
       content-type="application/json"    
       method="GET"
@@ -84,7 +84,7 @@ enrollCourse(event){
       on-response="_handleResponse"
       debounce-duration="2000"> </iron-ajax>
 
-        <h1>Course List</h1>
+        <h1>Overzicht Producten</h1>
         <template is="dom-if" if="{{isloading}}">
          <paper-progress id="progressBar" indeterminate></paper-progress>
         </template>

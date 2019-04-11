@@ -103,7 +103,7 @@ class MyApp extends PolymerElement {
         }
       </style>
 
-      <app-location route="{{route}}" url-space-regex="^[[rootPath]]">
+      <app-location route="{{route}}" url-space-regex="^[[rootPath]]" use-hash-as-path>
       </app-location>
 
       <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}">
@@ -115,9 +115,9 @@ class MyApp extends PolymerElement {
           <app-toolbar><iron-image sizing="cover" preload src="../../assets/ing.png"></iron-image></app-toolbar>          
                 <template is="dom-if" if="{{!userCheck}}">
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-                <a name="mylogin" href="[[rootPath]]mylogin">Login</a>
-                <a name="myregistration" href="[[rootPath]]myregistration">Registration</a>
-                <a name="courselist" href="[[rootPath]]courselist">Course</a>            
+                <a name="mylogin" href="#/mylogin"></a>
+                <a name="myregistration" href="#/myregistration"></a>
+                          
               </iron-selector>
               </template>
                 <template is="dom-if" if="{{userCheck}}" restamp="true">
@@ -137,8 +137,8 @@ class MyApp extends PolymerElement {
           <app-header slot="header" condenses="" reveals="" effects="waterfall">
             <app-toolbar>
               <paper-icon-button icon="my-icons:menu" drawer-toggle=""></paper-icon-button>
-              <div main-title="">My App</div>
-              <span> <paper-button raised class="indigo" on-click="Logout">Logout</paper-button </span>
+              <div main-title="">Producten</div>
+              <!--<span> <paper-button raised class="indigo" on-click="Logout">Logout</paper-button </span> -->
             </app-toolbar>
           </app-header>
 
