@@ -3,7 +3,7 @@ import {html , PolymerElement } from '@polymer/polymer/polymer-element.js';
 class productDetails extends PolymerElement{
   connectedCallback(){
     super.connectedCallback();
-     var routeval = JSON.stringify(this.routeData.subId);
+     var routeval = JSON.stringify(this.routeData.productId);
      console.log(routeval);
 
      let ajaxCall = this.$.ajaxdetails;
@@ -36,7 +36,6 @@ class productDetails extends PolymerElement{
         return html `
         <a href="[[rootPath]]#/productslist">back</a>
 
-        <div> {{routeData}} </div>
       <app-route
             route="{{route}}"
             pattern="/:productGroupId/:productId"
@@ -49,12 +48,30 @@ class productDetails extends PolymerElement{
         auto 
         id="ajaxdetails"
         handle-as="json"
-       on-response="_handleResponse"        
+             
         on-response="_handleResponse"
     > </iron-ajax>
-    <div>
-      [[]]
-    </div>
+    
+    <dom-repeat items={{data}}>
+                <template>
+                    <paper-card>
+                        <div class="card-actions">
+                            <div>Product Id: [[item.productId]] </div>
+                            <div>prorduct groupId: [[item.productGroupId]]</div>
+                            <dom-repeat items={{item.product}}> 
+                            <div>Product Name: [[item.productName]]</div>
+                            <div>Precentage: [[item.percentage]]</div>
+                            <div>Intrest Rate: [[item.interestRate]]</div>
+                            <div>Specail: [[item.special]]</div>
+                            <div>deposit withdraw: [[item.depositAndWithdrawal]]</div>
+                            <div>Minum Investment: [[item.minInvestment]]</div>
+                            <div>Maxmum Investment: [[item.maxInvestment]]</div>
+                            <div>Duration: [[item.duration]]</div>
+                            </dom-repeat>
+                        </div>
+                    </paper-card>
+                </template>
+            </dom-repeat>
         `
     }
 

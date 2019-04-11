@@ -36,7 +36,9 @@ class ProductsList extends PolymerElement{
 
 
     _handleResponse(event) {
-      this.data =   event.detail.response;       
+      this.data =   event.detail.response;
+      var length = this.data.length;
+      console.log()       
       console.log("datas=",this.data);
     }
 
@@ -59,11 +61,11 @@ class ProductsList extends PolymerElement{
        
         > </iron-ajax>
 
-        <template is ="dom-repeat" items={{data}}>
+        <template is ="dom-repeat" items={{data}} >
       <vaadin-accordion-panel theme="filled">
-      <div slot="summary">[[item.productGroupName]]</div>
+      <div slot="summary">[[item.productGroupName]] ({{item.product.length}})</div>
        <template is="dom-repeat" items=[[item.product]]>
-       <!--<div><a href="#/details/[[routeData.productGroupId]]/[[routeData.productId]]"[[item.productName]]</div> -->
+       <!--<div><a href="#/details/[[data.productId]]/[[data.productGroupId]]"[[item.productName]]</div> -->
        <div><a href="#/productdetails/[[product.productGroupId]]/[[item.productId]]">{{item.productName}}</a></div>
         </template>
       </vaadin-accordion-panel>  
