@@ -1,4 +1,4 @@
 var config = {
-    baseUrl :'http://10.117.189.42:8090/Ing'
+    baseUrl :'http://13.233.109.120:8085/ING'
     //baseUrl: 'http://localhost:3000'
 }

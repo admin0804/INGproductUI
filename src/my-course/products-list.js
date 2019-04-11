@@ -13,32 +13,17 @@ import '@vaadin/vaadin-grid/src/vaadin-grid-styles.js';
 
 
 class ProductsList extends PolymerElement{
-    constructor(){
-        super();
-        this.data = [
-                  {
-                    "product-group":"Payments",
-                    "product-id": 1
-                 },
-                 {
-                  "product-group":"Mortgage",
-                  "product-id": 2
-               },
-               {
-                "product-group":"Savings",
-                "product-id": 3
-              }
-                ]
-              
-               
-          console.log("datas=",this.data);
-    }
+    
 
     connectedCallback(){
         super.connectedCallback();
     let ajaxCall = this.$.userAjax;
-     ajaxCall.url = config.baseUrl + "//stocks"; 
+     ajaxCall.url = config.baseUrl + "/api/v1/overview"; 
+     this.requestType = 'gettingGroup';    
+     ajaxCall.generateRequest(); 
     }
+
+
     static get properties() {
         return {
             data: Array,
@@ -51,8 +36,15 @@ class ProductsList extends PolymerElement{
 
 
     _handleResponse(event) {
-      this.data =  data;// event.detail.response;       
+      this.data =   event.detail.response;       
       console.log("datas=",this.data);
+    }
+
+    _getProducts(){
+        var ajaxstcok = this.$.userAjax;  
+        //ajaxstcok.url = config.baseUrl + "/trades/buyStocks";
+        ajaxstcok.method = "POST"
+        
     }
 
     static get template(){
@@ -64,23 +56,20 @@ class ProductsList extends PolymerElement{
         <iron-ajax 
         id="userAjax"            
         on-response="_handleResponse" 
-        on-error="handleError"
+       
         > </iron-ajax>
 
-    <vaadin-accordion >
-    <template is ="dom-repeat" items={{data}} >   
-    
+        <template is ="dom-repeat" items={{data}}>
       <vaadin-accordion-panel theme="filled">
-      <div slot="summary"> prodcut Name: [[item.product-group]] 
-      <span>Number products --{{data.length}} </span> </div>
-     
-       <template is="dom-repeat" items={{data}}>
-           
+      <div slot="summary">[[item.productGroupName]]</div>
+       <template is="dom-repeat" items=[[item.product]]>
+       <!--<div><a href="#/details/[[routeData.productGroupId]]/[[routeData.productId]]"[[item.productName]]</div> -->
+       <div><a href="#/productdetails/[[product.productGroupId]]/[[item.productId]]">{{item.productName}}</a></div>
         </template>
-      </vaadin-accordion-panel> 
-    
+      </vaadin-accordion-panel>  
     </template>
-    </vaadin-accordion>
+
+  
         `
     }
 

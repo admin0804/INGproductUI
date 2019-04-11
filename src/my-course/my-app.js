@@ -73,8 +73,15 @@ class MyApp extends PolymerElement {
       <app-location route="{{route}}" url-space-regex="^[[rootPath]]" use-hash-as-path>
       </app-location>
 
-      <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}">
-      </app-route>
+     <!-- <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}">
+      </app-route> -->
+
+      <app-route
+          route="{{route}}"
+          pattern="/:page"
+          data="{{routeData}}"
+          tail="{{subroute}}">
+</app-route>
 
       <app-drawer-layout fullbleed="" narrow="{{narrow}}">
         <!-- Drawer content -->
@@ -97,10 +104,11 @@ class MyApp extends PolymerElement {
             </app-toolbar>
           </app-header>
 
-          <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
+          <iron-pages selected="[[page]]" attr-for-selected="name" role="main" selected-attribute="visible">
             <my-login route="{{route}}" name="mylogin"></my-login>           
             <products-list name="productslist"></products-list>
-            <product-details name="productdetails"></product-details>
+            <product-details name="productdetails"  route={{subroute}}></product-details>
+            
             <my-view404 name="view404"></my-view404>
           </iron-pages>
         </app-header-layout>
