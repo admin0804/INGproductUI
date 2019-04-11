@@ -1,0 +1,34 @@
+{
+  "products":[
+     {
+        "product-id":1,
+        "product-name":"Bank"        
+     },
+     {
+      "product-id":2,
+      "product-name":"product2"        
+   },
+   {
+    "product-id":3,
+    "product-name":"product 3"        
+  }
+    
+  ],
+
+  "productsGroup" :[
+    {
+      "product-group":"Payments",
+      "product-id": 1
+   },
+   {
+    "product-group":"Mortgage",
+    "product-id": 1
+ },
+ {
+  "product-group":"Savings",
+  "product-id": 1
+}
+  ]
+}
+
+

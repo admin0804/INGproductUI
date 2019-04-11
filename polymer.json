@@ -1,6 +1,6 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app/my-app.js",
+  "shell": "src/my-course/my-app.js",
   "sources": [
     "src/*/*.*",
     "package.json"
@@ -14,7 +14,7 @@
   "npm": true,
   "builds": [
     {
-      "name": "sampleProject",
+      "name": "es5prod",
       "preset": "es5-bundled"
 
     }
